@@ -1,35 +1,35 @@
 include c:\masm32\include\user32.inc
 include c:\masm32\include\kernel32.inc
 
-; константы дескрипторов буфера
+; РєРѕРЅСЃС‚Р°РЅС‚С‹ РґРµСЃРєСЂРёРїС‚РѕСЂРѕРІ Р±СѓС„РµСЂР°
 STD_INPUT_HANDLE equ -10
 STD_OUTPUT_HANDLE equ -11
 STD_ERROR_HANDLE equ -12
 
-; структура координат
+; СЃС‚СЂСѓРєС‚СѓСЂР° РєРѕРѕСЂРґРёРЅР°С‚
 COORD STRUC
 	X DW ?
 	Y DW ?
 COORD ENDS
 
-;Цвет окна консоли
-FOREGROUND_BLUE equ 1h ; синий цвет букв
-FOREGROUND_GREEN equ 2h ; зеленый цвет букв
-FOREGROUND_RED equ 4h ; красный цвет букв
-FOREGROUND_INTENSITY equ 8h ; повышенная интенсивность
-BACKGROUND_BLUE equ 10h ; синий свет фона
-BACKGROUND_GREEN equ 20h ; зеленый цвет фона
-BACKGROUND_RED equ 40h ; красный цвет фона
-BACKGROUND_INTENSITY equ 80h ; повышенная интенсивность
+;Р¦РІРµС‚ РѕРєРЅР° РєРѕРЅСЃРѕР»Рё
+FOREGROUND_BLUE equ 1h ; СЃРёРЅРёР№ С†РІРµС‚ Р±СѓРєРІ
+FOREGROUND_GREEN equ 2h ; Р·РµР»РµРЅС‹Р№ С†РІРµС‚ Р±СѓРєРІ
+FOREGROUND_RED equ 4h ; РєСЂР°СЃРЅС‹Р№ С†РІРµС‚ Р±СѓРєРІ
+FOREGROUND_INTENSITY equ 8h ; РїРѕРІС‹С€РµРЅРЅР°СЏ РёРЅС‚РµРЅСЃРёРІРЅРѕСЃС‚СЊ
+BACKGROUND_BLUE equ 10h ; СЃРёРЅРёР№ СЃРІРµС‚ С„РѕРЅР°
+BACKGROUND_GREEN equ 20h ; Р·РµР»РµРЅС‹Р№ С†РІРµС‚ С„РѕРЅР°
+BACKGROUND_RED equ 40h ; РєСЂР°СЃРЅС‹Р№ С†РІРµС‚ С„РѕРЅР°
+BACKGROUND_INTENSITY equ 80h ; РїРѕРІС‹С€РµРЅРЅР°СЏ РёРЅС‚РµРЅСЃРёРІРЅРѕСЃС‚СЊ
 
-; тип события
-KEY_EV equ 1h ; клавиатурное событие
-MOUSE_EV equ 2h ; событие с мышью
-WINDOW_BUFFER_SIZE_EV equ 4h ; изменился размер окна
-MENU_EV equ 8h ; зарезервировано
-FOCUS_EV equ 10h ; зарезервировано
+; С‚РёРї СЃРѕР±С‹С‚РёСЏ
+KEY_EV equ 1h ; РєР»Р°РІРёР°С‚СѓСЂРЅРѕРµ СЃРѕР±С‹С‚РёРµ
+MOUSE_EV equ 2h ; СЃРѕР±С‹С‚РёРµ СЃ РјС‹С€СЊСЋ
+WINDOW_BUFFER_SIZE_EV equ 4h ; РёР·РјРµРЅРёР»СЃСЏ СЂР°Р·РјРµСЂ РѕРєРЅР°
+MENU_EV equ 8h ; Р·Р°СЂРµР·РµСЂРІРёСЂРѕРІР°РЅРѕ
+FOCUS_EV equ 10h ; Р·Р°СЂРµР·РµСЂРІРёСЂРѕРІР°РЅРѕ
 
-; константы - состояния клавиатуры
+; РєРѕРЅСЃС‚Р°РЅС‚С‹ - СЃРѕСЃС‚РѕСЏРЅРёСЏ РєР»Р°РІРёР°С‚СѓСЂС‹
 RIGHT_ALT_PRESSED equ 1h
 LEFT_ALT_PRESSED equ 2h
 RIGHT_CTRL_PRESSED equ 4h
@@ -40,12 +40,12 @@ SCROLLLOCK_ON equ 40h
 CAPSLOCK_ON equ 80h
 ENHANCED_KEY equ 100h
 
-; события мыши
-MOUSE_MOVED equ 1h; было движение мыши
-DOUBLE_CLICK equ 2h; был двойной щелчок
+; СЃРѕР±С‹С‚РёСЏ РјС‹С€Рё
+MOUSE_MOVED equ 1h; Р±С‹Р»Рѕ РґРІРёР¶РµРЅРёРµ РјС‹С€Рё
+DOUBLE_CLICK equ 2h; Р±С‹Р» РґРІРѕР№РЅРѕР№ С‰РµР»С‡РѕРє
 
-; описание событий структуры PINPUT_RECORD
-; событие мыши
+; РѕРїРёСЃР°РЅРёРµ СЃРѕР±С‹С‚РёР№ СЃС‚СЂСѓРєС‚СѓСЂС‹ PINPUT_RECORD
+; СЃРѕР±С‹С‚РёРµ РјС‹С€Рё
 MOUSE_EVENT_RECORD STRUCT
 	dwMousePosition COORD <>
 	dwButtonState DWORD ?
@@ -53,7 +53,7 @@ MOUSE_EVENT_RECORD STRUCT
 	dwEventFlags DWORD ?
 MOUSE_EVENT_RECORD ENDS
 
-; событие клавиатуры
+; СЃРѕР±С‹С‚РёРµ РєР»Р°РІРёР°С‚СѓСЂС‹
 KEY_EVENT_RECORD STRUCT
 	bKeyDown DD ?
 	wRepeatCount DW ?
@@ -66,7 +66,7 @@ KEY_EVENT_RECORD STRUCT
 	dwControlKeyState DD ?
 KEY_EVENT_RECORD ENDS
 
-; изменение размера окна консоли
+; РёР·РјРµРЅРµРЅРёРµ СЂР°Р·РјРµСЂР° РѕРєРЅР° РєРѕРЅСЃРѕР»Рё
 WINDOW_BUFFER_SIZE_RECORD STRUCT
 	dwSize COORD <>
 WINDOW_BUFFER_SIZE_RECORD ENDS
@@ -79,7 +79,7 @@ FOCUS_EVENT_RECORD STRUCT
 	bSetFocus DWORD ?
 FOCUS_EVENT_RECORD ENDS
 
-; Структура PINPUT_RECORD
+; РЎС‚СЂСѓРєС‚СѓСЂР° PINPUT_RECORD
 INPUT_RECORD STRUCT
 	EventType DW ?
 	DW ?
@@ -92,7 +92,7 @@ INPUT_RECORD STRUCT
 	ENDS
 	INPUT_RECORD ENDS
 
-; Секция данных содержит временные переменные
+; РЎРµРєС†РёСЏ РґР°РЅРЅС‹С… СЃРѕРґРµСЂР¶РёС‚ РІСЂРµРјРµРЅРЅС‹Рµ РїРµСЂРµРјРµРЅРЅС‹Рµ
 .data
 @CO DD ?
 @numBytes DD ?
@@ -101,27 +101,27 @@ KeyEvent INPUT_RECORD <>
 
 .code
 ;-------------------------------------------------------------------
-; Функция считывание символа в консоли
-; consoleInHandle - дескриптор буфера консоли ввода
-; consoleOutHandle - дескриптор буфера консоли вывода
-; Display - управление отображением символа:
-; 0 - символ отображается
-; 1 - символ не отображается
-; функция возвращает считанный символ в регистре al
+; Р¤СѓРЅРєС†РёСЏ СЃС‡РёС‚С‹РІР°РЅРёРµ СЃРёРјРІРѕР»Р° РІ РєРѕРЅСЃРѕР»Рё
+; consoleInHandle - РґРµСЃРєСЂРёРїС‚РѕСЂ Р±СѓС„РµСЂР° РєРѕРЅСЃРѕР»Рё РІРІРѕРґР°
+; consoleOutHandle - РґРµСЃРєСЂРёРїС‚РѕСЂ Р±СѓС„РµСЂР° РєРѕРЅСЃРѕР»Рё РІС‹РІРѕРґР°
+; Display - СѓРїСЂР°РІР»РµРЅРёРµ РѕС‚РѕР±СЂР°Р¶РµРЅРёРµРј СЃРёРјРІРѕР»Р°:
+; 0 - СЃРёРјРІРѕР» РѕС‚РѕР±СЂР°Р¶Р°РµС‚СЃСЏ
+; 1 - СЃРёРјРІРѕР» РЅРµ РѕС‚РѕР±СЂР°Р¶Р°РµС‚СЃСЏ
+; С„СѓРЅРєС†РёСЏ РІРѕР·РІСЂР°С‰Р°РµС‚ СЃС‡РёС‚Р°РЅРЅС‹Р№ СЃРёРјРІРѕР» РІ СЂРµРіРёСЃС‚СЂРµ al
 
 ReadSymbol proc consoleInHandle:DWORD, consoleOutHandle:DWORD, Display:DWORD
 @L1:
 	INVOKE ReadConsoleInputA, consoleInHandle, offset KeyEvent, 1, offset @CO
 	CMP KeyEvent.EventType, KEY_EV
 	JNE @L1
-	; сохранение введенного символа
+	; СЃРѕС…СЂР°РЅРµРЅРёРµ РІРІРµРґРµРЅРЅРѕРіРѕ СЃРёРјРІРѕР»Р°
 	MOV AL, KeyEvent.KeyEvent.AsciiChar
 	MOV @SYMBOL, AL
 	CMP Display, 0
 	JNE @L2
-	;вывод символа
+	;РІС‹РІРѕРґ СЃРёРјРІРѕР»Р°
 	INVOKE WriteConsoleA, consoleOutHandle, OFFSET @SYMBOL, 1, OFFSET @numBytes, 0
-	; Считывание события клавиатуры отпускания клавиши
+	; РЎС‡РёС‚С‹РІР°РЅРёРµ СЃРѕР±С‹С‚РёСЏ РєР»Р°РІРёР°С‚СѓСЂС‹ РѕС‚РїСѓСЃРєР°РЅРёСЏ РєР»Р°РІРёС€Рё
 @L2:
 	INVOKE ReadConsoleInputA, consoleInHandle, offset KeyEvent, 1, offset @CO
 	CMP KeyEvent.EventType, KEY_EV
@@ -132,10 +132,10 @@ ReadSymbol proc consoleInHandle:DWORD, consoleOutHandle:DWORD, Display:DWORD
 ReadSymbol endp
 
 ;-------------------------------------------------------------------
-; Представление целого числа в текстовой форме
-; Number - целое число
-; Str1 - указатель на строку, в которую будет помещено представление числа
-; функция возвращает длину строки символов в регистре EAX
+; РџСЂРµРґСЃС‚Р°РІР»РµРЅРёРµ С†РµР»РѕРіРѕ С‡РёСЃР»Р° РІ С‚РµРєСЃС‚РѕРІРѕР№ С„РѕСЂРјРµ
+; Number - С†РµР»РѕРµ С‡РёСЃР»Рѕ
+; Str1 - СѓРєР°Р·Р°С‚РµР»СЊ РЅР° СЃС‚СЂРѕРєСѓ, РІ РєРѕС‚РѕСЂСѓСЋ Р±СѓРґРµС‚ РїРѕРјРµС‰РµРЅРѕ РїСЂРµРґСЃС‚Р°РІР»РµРЅРёРµ С‡РёСЃР»Р°
+; С„СѓРЅРєС†РёСЏ РІРѕР·РІСЂР°С‰Р°РµС‚ РґР»РёРЅСѓ СЃС‚СЂРѕРєРё СЃРёРјРІРѕР»РѕРІ РІ СЂРµРіРёСЃС‚СЂРµ EAX
 IntToStr proc Number:DWORD, Str1:DWORD
 	MOV EAX, Number
 	MOV EDI,Str1
@@ -170,30 +170,30 @@ IntToStr proc Number:DWORD, Str1:DWORD
 IntToStr endp
 
 ;-------------------------------------------------------------------
-; Определение длины строки
-; Str1 - указатель на строку
-; функция возвращает длину строки символов в регистре EAX
+; РћРїСЂРµРґРµР»РµРЅРёРµ РґР»РёРЅС‹ СЃС‚СЂРѕРєРё
+; Str1 - СѓРєР°Р·Р°С‚РµР»СЊ РЅР° СЃС‚СЂРѕРєСѓ
+; С„СѓРЅРєС†РёСЏ РІРѕР·РІСЂР°С‰Р°РµС‚ РґР»РёРЅСѓ СЃС‚СЂРѕРєРё СЃРёРјРІРѕР»РѕРІ РІ СЂРµРіРёСЃС‚СЂРµ EAX
 LENSTR PROC Str1:DWORD
 	CLD
 	CLD
 	MOV EDI, Str1
 	MOV EBX,EDI
-	MOV ECX,100 ; ограничить длину строки
+	MOV ECX,100 ; РѕРіСЂР°РЅРёС‡РёС‚СЊ РґР»РёРЅСѓ СЃС‚СЂРѕРєРё
 	MOV EAX, 0
-	REPNE SCASB ; найти символ 0
-	SUB EDI, EBX ; длина строки, включая 0
+	REPNE SCASB ; РЅР°Р№С‚Рё СЃРёРјРІРѕР» 0
+	SUB EDI, EBX ; РґР»РёРЅР° СЃС‚СЂРѕРєРё, РІРєР»СЋС‡Р°СЏ 0
 	MOV EAX,EDI
 	DEC EAX
 	RET
 LENSTR ENDP
 
 ;-------------------------------------------------------------------
-; Вывод строки в окно консоли
-; StrPtr - указатель на выводимую строку, оканчивающуюся 0
-; consoleOutHandle - дескриптор буфера консоли вывода
+; Р’С‹РІРѕРґ СЃС‚СЂРѕРєРё РІ РѕРєРЅРѕ РєРѕРЅСЃРѕР»Рё
+; StrPtr - СѓРєР°Р·Р°С‚РµР»СЊ РЅР° РІС‹РІРѕРґРёРјСѓСЋ СЃС‚СЂРѕРєСѓ, РѕРєР°РЅС‡РёРІР°СЋС‰СѓСЋСЃСЏ 0
+; consoleOutHandle - РґРµСЃРєСЂРёРїС‚РѕСЂ Р±СѓС„РµСЂР° РєРѕРЅСЃРѕР»Рё РІС‹РІРѕРґР°
 PrintStr proc StrPtr:DWORD, Handle:DWORD
 	INVOKE CharToOem, StrPtr, StrPtr
-	INVOKE LENSTR, StrPtr ; определение длины строки
+	INVOKE LENSTR, StrPtr ; РѕРїСЂРµРґРµР»РµРЅРёРµ РґР»РёРЅС‹ СЃС‚СЂРѕРєРё
 	INVOKE WriteConsole, Handle, StrPtr, eax, OFFSET @numBytes, 0
 	ret
 PrintStr endp
