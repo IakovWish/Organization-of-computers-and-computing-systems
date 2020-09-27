@@ -6,7 +6,7 @@ include console.inc
 consoleOutHandle DD ? ; дескриптор выходного буфера
 consoleInHandle DD ? ; дескриптор входного буфера
 numBytes DD ?
-IN_STR Db "Введите массив из 10 чисел", 10, 0
+IN_STR Db "Введите массив из 10 чисел через пробел", 10, 0
 space dw 32 ; пробел
 TITL Db "В массиве из 10 чисел переставить элементы в зеркальном порядке.", 0
 n dw 10 ; \n
