@@ -23,9 +23,9 @@ START proc
 
 	; получить дескрипторы
 	INVOKE GetStdHandle, STD_INPUT_HANDLE
-	MOV consoleInHandle,EAX
+	MOV consoleInHandle, EAX
 	INVOKE GetStdHandle, STD_OUTPUT_HANDLE
-	MOV consoleOutHandle,EAX
+	MOV consoleOutHandle, EAX
 
 	; задать заголовок окна консоли
 	INVOKE CharToOem, OFFSET TITL, OFFSET TITL
