@@ -1,5 +1,5 @@
 include c:\masm32\include\user32.inc
-include c:\masm32\include\kernel32.inc
+include c:\masm32\include\kernel32.inc ; подключение описаний процедур
 
 ; константы дескрипторов буфера
 STD_INPUT_HANDLE equ -10
@@ -12,7 +12,7 @@ COORD STRUC
 	Y DW ?
 COORD ENDS
 
-;Цвет окна консоли
+; Цвет окна консоли
 FOREGROUND_BLUE equ 1h ; синий цвет букв
 FOREGROUND_GREEN equ 2h ; зеленый цвет букв
 FOREGROUND_RED equ 4h ; красный цвет букв
